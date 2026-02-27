@@ -1,0 +1,7 @@
+{
+  "name": "Jarvis AI",
+  "description": "An advanced AI assistant co-pilot built by Mr. Alpha, designed for strategic reasoning, coding, and system optimization.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
