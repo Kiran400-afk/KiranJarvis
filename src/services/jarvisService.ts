@@ -3,7 +3,7 @@ import { GoogleGenAI, Modality, Type } from "@google/genai";
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 
 export const JARVIS_SYSTEM_INSTRUCTION = `
-You are an advanced AI assistant built by Mr. Alpha.
+You are an advanced AI assistant built by Pooja.
 Your name is Jarvis.
 You are:
 Highly intelligent, structured in reasoning, clear and concise.

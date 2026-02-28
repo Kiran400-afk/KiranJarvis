@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Send, 
-  Terminal, 
-  Cpu, 
-  Rocket, 
-  BookOpen, 
-  Settings, 
-  Plus, 
-  MessageSquare, 
-  User, 
+import {
+  Send,
+  Terminal,
+  Cpu,
+  Rocket,
+  BookOpen,
+  Settings,
+  Plus,
+  MessageSquare,
+  User,
   Bot,
   ChevronRight,
   Zap,
@@ -69,7 +69,7 @@ export default function App() {
       }));
 
       const stream = await jarvis.streamChat(input, history, mode);
-      
+
       let assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'model',
@@ -112,7 +112,7 @@ export default function App() {
   return (
     <div className="flex h-screen bg-jarvis-bg overflow-hidden font-sans">
       {/* Sidebar */}
-      <motion.aside 
+      <motion.aside
         initial={false}
         animate={{ width: sidebarOpen ? 280 : 0, opacity: sidebarOpen ? 1 : 0 }}
         className="glass-panel border-r border-jarvis-border flex flex-col relative z-20"
@@ -135,11 +135,10 @@ export default function App() {
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
-                    mode === m.id 
-                      ? 'bg-jarvis-accent/10 border border-jarvis-accent/20 text-white' 
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${mode === m.id
+                      ? 'bg-jarvis-accent/10 border border-jarvis-accent/20 text-white'
                       : 'text-gray-400 hover:bg-white/5 hover:text-gray-200'
-                  }`}
+                    }`}
                 >
                   <m.icon className={`w-4 h-4 ${mode === m.id ? m.color : 'group-hover:text-gray-200'}`} />
                   <span className="text-sm font-medium">{m.label}</span>
@@ -167,10 +166,10 @@ export default function App() {
         <div className="p-4 border-t border-jarvis-border">
           <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-jarvis-accent to-blue-600 flex items-center justify-center text-white font-bold text-xs">
-              MA
+              P
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-white truncate">Mr. Alpha</p>
+              <p className="text-xs font-semibold text-white truncate">Pooja</p>
               <p className="text-[10px] text-gray-500 truncate">Lead Architect</p>
             </div>
             <Settings className="w-4 h-4 text-gray-500 cursor-pointer hover:text-white transition-colors" />
@@ -183,7 +182,7 @@ export default function App() {
         {/* Header */}
         <header className="h-16 glass-panel border-b border-jarvis-border flex items-center justify-between px-6 z-10">
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="p-2 hover:bg-white/5 rounded-lg text-gray-400 transition-colors"
             >
@@ -218,7 +217,7 @@ export default function App() {
         <div className="flex-1 overflow-y-auto p-6 space-y-8">
           {messages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center max-w-2xl mx-auto text-center space-y-8">
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="w-20 h-20 rounded-3xl bg-jarvis-accent/10 flex items-center justify-center border border-jarvis-accent/20 accent-glow"
@@ -226,7 +225,7 @@ export default function App() {
                 <Zap className="w-10 h-10 text-jarvis-accent" />
               </motion.div>
               <div className="space-y-4">
-                <h2 className="text-4xl font-display font-bold text-white tracking-tight">How can I assist you, Mr. Alpha?</h2>
+                <h2 className="text-4xl font-display font-bold text-white tracking-tight">How can I assist you, Pooja?</h2>
                 <p className="text-gray-400 text-lg leading-relaxed">
                   I am Jarvis, your strategic AI co-pilot. I'm currently operating in <span className="text-jarvis-accent font-semibold">{mode} Mode</span>.
                 </p>
@@ -271,11 +270,10 @@ export default function App() {
                     </div>
                   )}
                   <div className={`max-w-[85%] space-y-2 ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
-                    <div className={`inline-block p-5 rounded-2xl ${
-                      msg.role === 'user' 
-                        ? 'bg-jarvis-accent text-black font-medium shadow-[0_0_20px_rgba(0,240,255,0.2)]' 
+                    <div className={`inline-block p-5 rounded-2xl ${msg.role === 'user'
+                        ? 'bg-jarvis-accent text-black font-medium shadow-[0_0_20px_rgba(0,240,255,0.2)]'
                         : 'glass-panel'
-                    }`}>
+                      }`}>
                       <div className="markdown-body">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {msg.content}
@@ -324,7 +322,7 @@ export default function App() {
             <div className="absolute -top-12 left-0 right-0 flex justify-center pointer-events-none">
               <AnimatePresence>
                 {isLoading && (
-                  <motion.div 
+                  <motion.div
                     initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 10, opacity: 0 }}
@@ -355,21 +353,20 @@ export default function App() {
                 <button className="p-2.5 text-gray-500 hover:text-white hover:bg-white/5 rounded-xl transition-all">
                   <Plus className="w-5 h-5" />
                 </button>
-                <button 
+                <button
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
-                  className={`p-2.5 rounded-xl transition-all ${
-                    input.trim() && !isLoading
+                  className={`p-2.5 rounded-xl transition-all ${input.trim() && !isLoading
                       ? 'bg-jarvis-accent text-black shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:scale-105 active:scale-95'
                       : 'bg-white/5 text-gray-600 cursor-not-allowed'
-                  }`}
+                    }`}
                 >
                   <Send className="w-5 h-5" />
                 </button>
               </div>
             </div>
             <p className="text-center text-[10px] text-gray-600 mt-3 font-mono uppercase tracking-widest">
-              Jarvis v2.0 // Neural Engine Status: Optimal // Built by Mr. Alpha
+              Jarvis v2.0 // Neural Engine Status: Optimal // Built by Pooja
             </p>
           </div>
         </div>
