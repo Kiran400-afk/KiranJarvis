@@ -40,10 +40,16 @@ You are a strategic AI co-pilot. You help design, build, debug, optimize, and de
 export type JarvisMode = 'Developer' | 'Exam' | 'Startup' | 'Research' | 'General';
 
 export class JarvisService {
-  private ai: GoogleGenAI;
+  private ai: GoogleGenAI | null = null;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    if (GEMINI_API_KEY && GEMINI_API_KEY.trim() !== '') {
+      try {
+        this.ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+      } catch (e) {
+        console.warn('Failed to initialize GoogleGenAI client:', e);
+      }
+    }
   }
 
   async chat(message: string, history: any[] = [], mode: JarvisMode = 'General') {
@@ -55,8 +61,12 @@ export class JarvisService {
       General: "Standard Jarvis persona."
     };
 
+    if (!this.ai) {
+      throw new Error("Jarvis AI is not properly configured. Please check that your Gemini API key is set.");
+    }
+
     const chat = this.ai.chats.create({
-      model: "gemini-2.0-flash-exp", // Using a stable high-performance model
+      model: "gemini-2.5-flash", // Using a stable high-performance model
       config: {
         systemInstruction: `${JARVIS_SYSTEM_INSTRUCTION}\n\nCURRENT MODE: ${mode}\n${modeInstructions[mode]}`,
       },
@@ -77,7 +87,7 @@ export class JarvisService {
     };
 
     const chat = this.ai.chats.create({
-      model: "gemini-2.0-flash-exp",
+      model: "gemini-2.5-flash",
       config: {
         systemInstruction: `${JARVIS_SYSTEM_INSTRUCTION}\n\nCURRENT MODE: ${mode}\n${modeInstructions[mode]}`,
       },
